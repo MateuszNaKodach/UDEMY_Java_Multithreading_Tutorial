@@ -1,0 +1,3 @@
+Klasa Thread
+run() - uruchamia w tym samym wątku
+start() - uruchamia thread w nowym wątku
