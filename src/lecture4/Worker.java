@@ -1,7 +1,5 @@
 package lecture4;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,25 +11,24 @@ public class Worker {
 
     private Random random = new Random();
 
+    private Object lock1 = new Object();
+    private Object lock2 = new Object();
+
     private List<Integer> list1 = new ArrayList<>();
     private List<Integer> list2 = new ArrayList<>();
 
     public void stageOne(){
-        try {
-            Thread.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        synchronized (lock1) {
+            sleepTimeInMilis(1);
+            addRandomValueToList(list1);
         }
-        addRandomValueToList(list1);
     };
 
     public void stageTwo(){
-        try {
-            Thread.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        synchronized (lock2) {
+            sleepTimeInMilis(1);
+            addRandomValueToList(list2);
         }
-        addRandomValueToList(list2);
     };
 
     public void process(){
@@ -41,6 +38,13 @@ public class Worker {
         }
     }
 
+    private void sleepTimeInMilis(long milis){
+        try {
+            Thread.sleep(milis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     private void addRandomValueToList(List<Integer> list){
         list.add(random.nextInt(100));
     }
