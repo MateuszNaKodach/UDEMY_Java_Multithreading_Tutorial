@@ -50,7 +50,28 @@ public class Worker {
         System.out.println("Starting...");
         long start = System.currentTimeMillis();
 
-        process();
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                process();
+            }
+        });
+
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                process();
+            }
+        });
+
+        t1.start();
+        t2.start();
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         long end = System.currentTimeMillis();
 
