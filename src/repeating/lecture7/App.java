@@ -1,4 +1,4 @@
-package repeating.lecutre7;
+package repeating.lecture7;
 
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;

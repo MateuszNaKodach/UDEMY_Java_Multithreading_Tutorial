@@ -1,4 +1,4 @@
-package repeating.lecutre6;
+package repeating.lecture6;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
