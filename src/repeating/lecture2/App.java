@@ -1,4 +1,4 @@
-package repeating.lecutre2;
+package repeating.lecture2;
 
 import java.util.Scanner;
 
